@@ -13,6 +13,10 @@ cloud2 = pygame.image.load('cloud2.png')
 crosshair = pygame.image.load('crosshair.png')
 duck_surface = pygame.image.load('duck.png')
 
+game_font = pygame.font.Font(None,60)
+text_surface = game_font.render('YOU WON!',True,(255,255,255))
+text_rect = text_surface.get_rect(center = (640,360))
+
 crosshair_rect = crosshair.get_rect
 
 land_y = 560
@@ -55,6 +59,9 @@ while True:
 
   for duck_rect in duck_list:
     screen.blit(duck_surface,duck_rect)
+  
+  if len(duck_list) <= 0:
+    screen.blit(text_surface,text_rect)
 
   water_y -= water_v
   if water_y <= 620 or water_y >= 680:
