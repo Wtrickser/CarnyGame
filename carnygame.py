@@ -3,6 +3,7 @@ import pygame, sys, random
 pygame.init()
 screen = pygame.display.set_mode((1280,720))
 clock = pygame.time.Clock()
+pygame.mouse.set_visible(False)
 
 wood_bg = pygame.image.load('Wood_BG.png')
 land_bg = pygame.image.load('Land_BG.png')
@@ -11,6 +12,8 @@ cloud1 = pygame.image.load('cloud1.png')
 cloud2 = pygame.image.load('cloud2.png')
 crosshair = pygame.image.load('crosshair.png')
 duck_surface = pygame.image.load('duck.png')
+
+crosshair_rect = crosshair.get_rect
 
 land_y = 560
 land_v = 1
@@ -36,6 +39,8 @@ while True:
     if event.type == pygame.QUIT:
       pygame.quit()
       sys.exit()
+    if event.type == pygame.MOUSEMOTION:
+      crosshair_rect = crosshair.get_rect(center = event.pos)
 
   screen.blit(wood_bg, (0,0))
 
@@ -66,5 +71,7 @@ while True:
   screen.blit(cloud2, (500,cloud2_y))
   screen.blit(cloud2, (800,cloud2_y))
 
+  screen.blit(crosshair, crosshair_rect)
+  
   pygame.display.update()
   clock.tick(120)
